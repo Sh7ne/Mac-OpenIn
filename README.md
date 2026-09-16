@@ -1,76 +1,68 @@
 # Open in Code & Terminal
 
-Open the current Finder folder in Visual Studio Code or Terminal with one click from the Finder toolbar.
+Two small Finder toolbar apps: open the selected folder, a selected file’s containing
+folder, or the current Finder window in Visual Studio Code or Terminal.
+If no Finder folder is available, they open the Desktop.
 
-**Both applications require Apple Silicon (arm64) and macOS 12.1 or later. Intel Macs are not supported.**
+**Version 2.1 requires Apple Silicon (arm64) and macOS 12.1 or later. Intel Macs are not supported.**
+Both apps keep transparent toolbar icons. Open in Code requires Visual Studio Code;
+Open in Terminal uses the Terminal included with macOS. Neither requires a shell launcher.
 
-- **Open in Code.app** (2.0) opens folders in Visual Studio Code and keeps the original transparent icon.
-- **Open in Terminal.app** (1.0) opens a Terminal window at the selected folder, with a transparent `>_` icon.
+## Download and install
 
-## How it works
+1. Download the DMG from the [latest release](https://github.com/Sh7ne/Mac-OpenIn/releases/latest).
+   It contains **Open in Code.app** and **Open in Terminal.app**; individual ZIPs are also available.
+2. Open the DMG and copy the apps into `/Applications/Utilities` using Finder.
+3. Open each app once and allow access to Finder when macOS asks.
+4. Command-drag the apps into the Finder toolbar, with Terminal immediately to the left of Code.
+5. Navigate to a folder and click either toolbar icon.
 
-- Select a folder to open that folder in the application you choose.
-- Select a file to open its containing folder.
-- With nothing selected, open the folder shown in the front Finder window.
+If dragging does not work, right-click the toolbar and choose **Text Only**, drag the
+apps into place, then switch back to **Icon Only**.
+When replacing an older app, remove its toolbar shortcut and drag the new app into place.
 
-Open in Code requires Visual Studio Code to be installed; its `code` command-line launcher is not required.
-Open in Terminal uses the Terminal application included with macOS. It passes directory paths directly to
-Terminal, so spaces, quotes, and other shell characters in folder names are handled as filenames.
-If no Finder folder is available, Open in Terminal opens the Desktop folder.
+These builds are ad hoc signed and are not notarized.
 
-## Build from source
+## Build
 
-Install full Xcode with a macOS SDK that supports arm64. Run these commands to clone and build:
+Install full Xcode, then run:
 
 ```sh
-git clone https://github.com/Sh7ne/Mac-OpenInVSCode.git
-cd Mac-OpenInVSCode
+git clone https://github.com/Sh7ne/Mac-OpenIn.git
+cd Mac-OpenIn
 sh scripts/build.sh
-sh scripts/build.sh Release Terminal
 ```
+
+One Xcode project contains two targets. Both share `main.m`, the minimal `Finder.h`,
+`Info.plist`, and `Config.xcconfig`. The only target differences are the destination
+application, bundle identifier, name, and icon. The source is Objective-C, so CI uses
+Clang static analysis and compiler warnings as errors; SwiftLint does not apply.
+
+The default build produces:
 
 | Output | Location |
 | --- | --- |
-| Open in Code | `build/Build/Products/Release/Open in Code.app` |
-| Code ZIP package | `build/Open-in-Code-2.0-arm64.zip` |
-| Open in Terminal | `build/Build/Products/Release/Open in Terminal.app` |
-| Terminal ZIP package | `build/Open-in-Terminal-1.0-arm64.zip` |
+| Both apps | `build/Build/Products/Release/` |
+| DMG with both apps | `build/Open-in-2.1-arm64.dmg` |
+| Code ZIP | `build/Open-in-Code-2.1-arm64.zip` |
+| Terminal ZIP | `build/Open-in-Terminal-2.1-arm64.zip` |
 
-For Debug builds, run `sh scripts/build.sh Debug` or `sh scripts/build.sh Debug Terminal`. Applications are generated in
-`build/Build/Products/Debug`.
+Use `sh scripts/build.sh Debug` for both Debug builds, or pass `Code` or `Terminal`
+as the second argument to build just one app, for example `sh scripts/build.sh Release Code`.
+The build verifies arm64 architecture and signatures. CI checks both configurations;
+pushing a `v*` tag publishes the checked DMG and ZIPs to GitHub Releases.
 
-Both configurations build only arm64, and the source rejects non-arm64 compilation.
-The application uses an ad hoc signature for local use and is not notarized.
+## Transparent icons
 
-## Installation and usage
-
-1. Build the applications using the commands above. Earlier builds on the [releases page](https://github.com/Sh7ne/Mac-OpenInVSCode/releases/) predate these versions.
-2. In Finder, move the finished applications into `/Applications/Utilities`.
-3. Open each app once and allow access to Finder when macOS asks, then close the window it opens.
-4. Hold Command and drag `Open in Code.app` from Utilities to the Finder toolbar.
-5. Hold Command and drag `Open in Terminal.app` into the toolbar, immediately to the left of Open in Code.
-6. Navigate to a folder and click the appropriate toolbar icon to open it in Code or Terminal.
-
-If dragging does not work on your macOS version, right-click the Finder toolbar and
-choose **Text Only**, then drag the app into place. Switch back to **Icon Only** afterward.
-
-When replacing an older version, remove its toolbar shortcut and drag the new app into the toolbar.
-
-## Keep the transparent icon
-
-Use `scripts/build.sh` to produce the finished applications. It preserves `Monterey.icns`
-for Code and `Terminal/Terminal.icns` for Terminal as custom Finder icons, preventing an
-extra rounded background from appearing around the toolbar icons.
-
-Copy the application with Finder or `ditto`. Extract the ZIP with Archive Utility or
-`ditto` so that the custom icon's resource fork and Finder metadata are retained:
+The build stores the original ICNS artwork as a custom Finder icon, preserving its
+transparent background. Copy apps using Finder or `ditto`; extract ZIPs with Archive
+Utility or `ditto` so the icon’s resource fork and Finder metadata are retained:
 
 ```sh
-ditto -x -k build/Open-in-Code-2.0-arm64.zip build/unpacked
+ditto -x -k build/Open-in-Code-2.1-arm64.zip build/unpacked
 ```
 
-If the background returns after a copy that strips metadata, restore the original icon
-from the repository root:
+If another copy tool strips the custom icon, restore it from the repository root:
 
 ```sh
 sh scripts/preserve-finder-icon.sh \
@@ -79,29 +71,13 @@ sh scripts/preserve-finder-icon.sh \
   "/Applications/Utilities/Open in Terminal.app" Terminal/Terminal.icns
 ```
 
-## Verify the build
-
-Check that the finished executable contains only arm64:
-
-```sh
-lipo -archs "build/Build/Products/Release/Open in Code.app/Contents/MacOS/Open in Code"
-```
-
-Expected output: `arm64`.
-
-Check the application signature:
-
-```sh
-codesign --verify --verbose=2 "build/Build/Products/Release/Open in Code.app"
-```
-
-The build script verifies Xcode's signed intermediate with `codesign --verify --strict`
-before applying the custom icon to the finished copy. That intermediate is kept in
-`build/DerivedData`. Normal signature verification supports the finished copy;
-`--strict` rejects the Finder metadata required by custom icons.
+Xcode’s signed intermediates are kept in `build/DerivedData` and pass strict signature
+verification. Finished apps pass normal `codesign --verify`; `--strict` rejects the
+Finder metadata used for custom icons.
 
 ## Credits
 
-Thanks to the original OpenInCode developer, Sertac Ozercan.
-`Finder.h` was originally copied from [BetterInfo](https://github.com/davedelong/BetterInfo/blob/master/Finder.h).
-The original icon was converted from PNG to ICNS using [Aconvert](https://www.aconvert.com/image/).
+Original OpenInCode developer: Sertac Ozercan. See [LICENSE](LICENSE).
+The minimal Finder declarations derive from the original `Finder.h`, copied from
+[BetterInfo](https://github.com/davedelong/BetterInfo/blob/master/Finder.h).
+The original Code icon was converted from PNG to ICNS using [Aconvert](https://www.aconvert.com/image/).

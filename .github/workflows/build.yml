@@ -1,0 +1,69 @@
+name: Build and analyze
+
+on:
+  push:
+    branches: [master]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check source and project
+        run: |
+          git show --format= --check HEAD
+          for script in scripts/*.sh; do sh -n "$script"; done
+          plutil -lint Info.plist 'Open in VSCode.xcodeproj/project.pbxproj'
+          for app in Code Terminal; do
+            xcodebuild -quiet -project 'Open in VSCode.xcodeproj' \
+              -scheme "Open in $app" -destination 'generic/platform=macOS' \
+              -configuration Release analyze \
+              CLANG_ANALYZER_OUTPUT=text
+          done
+      - name: Build both apps
+        run: |
+          sh scripts/build.sh Debug
+          sh scripts/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Open-in-arm64
+          path: |
+            build/*.dmg
+            build/*.zip
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Open-in-arm64
+          path: release
+      - name: Publish apps
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cat > notes.md <<'NOTES'
+          Includes **Open in Code.app** and **Open in Terminal.app**.
+
+          Download the **DMG** to get both ready-to-use apps, or use the individual ZIP files. Requires Apple Silicon (arm64) and macOS 12.1 or later; Intel Macs are not supported.
+
+          Move the apps to `/Applications/Utilities`, then Command-drag them into the Finder toolbar, with Terminal to the left of Code. If dragging fails, switch the toolbar to **Text Only**, drag the apps, then restore **Icon Only**. Allow Finder access when prompted.
+
+          Both apps preserve their transparent toolbar icons. ZIP files must be extracted with Archive Utility or `ditto` to keep Finder metadata. These builds are ad hoc signed and are not notarized.
+
+          This release shares the Finder handling and build configuration between the two apps, removes unused legacy files, and adds Clang analysis plus Debug and Release build checks.
+          NOTES
+          gh release create "$RELEASE_TAG" release/*.dmg release/*.zip \
+            --verify-tag --title "Open in Code & Terminal $RELEASE_TAG" \
+            --notes-file notes.md

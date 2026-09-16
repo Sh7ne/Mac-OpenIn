@@ -1,71 +1,33 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {
-	};
+	classes = {};
 	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		441F481A27998B11008F9980 /* Monterey.icns in Resources */ = {isa = PBXBuildFile; fileRef = 441F481927998B11008F9980 /* Monterey.icns */; };
-		69C8AA71106E8F5800C4DE0D /* Finder.app in Resources */ = {isa = PBXBuildFile; fileRef = 69C8AA70106E8F5800C4DE0D /* Finder.app */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		C82F4C8C1D31B01E0084C3F5 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
-		A70000000000000000000001 /* Terminal/main.m in Sources */ = {isa = PBXBuildFile; fileRef = A70000000000000000000005 /* main.m */; };
-		A70000000000000000000002 /* Terminal.icns in Resources */ = {isa = PBXBuildFile; fileRef = A70000000000000000000007 /* Terminal.icns */; };
-		A70000000000000000000003 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		A70000000000000000000004 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
+		A70000000000000000000001 /* main.m in Sources */ = { isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		A70000000000000000000002 /* Terminal.icns in Resources */ = { isa = PBXBuildFile; fileRef = A70000000000000000000007 /* Terminal.icns */; };
+		A70000000000000000000003 /* Cocoa.framework in Frameworks */ = { isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A70000000000000000000004 /* ScriptingBridge.framework in Frameworks */ = { isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = { isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		441F481A27998B11008F9980 /* Monterey.icns in Resources */ = { isa = PBXBuildFile; fileRef = 441F481927998B11008F9980 /* Monterey.icns */; };
+		C82F4C8C1D31B01E0084C3F5 /* ScriptingBridge.framework in Frameworks */ = { isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = { isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		69C8AA6F106E8F0C00C4DE0D /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.app";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 1;
-			outputFiles = (
-				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).h",
-			);
-			script = "sdef \"$INPUT_FILE_PATH\" | sdp -fh -o \"$DERIVED_FILES_DIR\" --basename \"$INPUT_FILE_BASE\" --bundleid `defaults read \"$INPUT_FILE_PATH/Contents/Info\" CFBundleIdentifier`\n";
-		};
-/* End PBXBuildRule section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		694495D00B869BB500A19631 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* Open in Code_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Open in Code_Prefix.pch"; sourceTree = "<group>"; };
-		441F481927998B11008F9980 /* Monterey.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Monterey.icns; sourceTree = "<group>"; };
-		44ED65A62799659F00AFF241 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		44ED65A827996BBF00AFF241 /* Finder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finder.h; sourceTree = "<group>"; };
-		69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
-		69C8AA70106E8F5800C4DE0D /* Finder.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Finder.app; path = /System/Library/CoreServices/Finder.app; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Open in Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open in Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A70000000000000000000005 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A70000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A70000000000000000000007 /* Terminal.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Terminal.icns; sourceTree = "<group>"; };
-		A70000000000000000000008 /* Terminal.svg */ = {isa = PBXFileReference; lastKnownFileType = image.svg; path = Terminal.svg; sourceTree = "<group>"; };
-		A70000000000000000000009 /* Open in Terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open in Terminal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44ED65A827996BBF00AFF241 /* Finder.h */ = { isa = PBXFileReference; path = Finder.h; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = { isa = PBXFileReference; path = main.m; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; };
+		8D1107310486CEB800E47090 /* Info.plist */ = { isa = PBXFileReference; path = Info.plist; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.plist; };
+		441F481927998B11008F9980 /* Monterey.icns */ = { isa = PBXFileReference; path = Monterey.icns; lastKnownFileType = image.icns; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = { isa = PBXFileReference; path = System/Library/Frameworks/Cocoa.framework; name = Cocoa.framework; lastKnownFileType = wrapper.framework; sourceTree = SDKROOT; };
+		8D1107320486CEB800E47090 /* Open in Code.app */ = { isa = PBXFileReference; path = "Open in Code.app"; includeInIndex = 0; explicitFileType = wrapper.application; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70000000000000000000007 /* Terminal.icns */ = { isa = PBXFileReference; path = Terminal.icns; lastKnownFileType = image.icns; sourceTree = "<group>"; };
+		A70000000000000000000008 /* Terminal.svg */ = { isa = PBXFileReference; path = Terminal.svg; lastKnownFileType = image.svg; sourceTree = "<group>"; };
+		69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */ = { isa = PBXFileReference; path = System/Library/Frameworks/ScriptingBridge.framework; name = ScriptingBridge.framework; lastKnownFileType = wrapper.framework; sourceTree = SDKROOT; };
+		A70000000000000000000009 /* Open in Terminal.app */ = { isa = PBXFileReference; path = "Open in Terminal.app"; includeInIndex = 0; explicitFileType = wrapper.application; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70000000000000000000012 /* Config.xcconfig */ = { isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,153 +52,123 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
+			name = Products;
 			children = (
 				8D1107320486CEB800E47090 /* Open in Code.app */,
 				A70000000000000000000009 /* Open in Terminal.app */,
 			);
-			name = Products;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			name = Frameworks;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			name = Resources;
+			children = (
+				441F481927998B11008F9980 /* Monterey.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			sourceTree = "<group>";
+		};
+		A7000000000000000000000B /* Terminal */ = {
+			isa = PBXGroup;
+			path = Terminal;
+			children = (
+				A70000000000000000000007 /* Terminal.icns */,
+				A70000000000000000000008 /* Terminal.svg */,
+			);
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* Open In Code */ = {
 			isa = PBXGroup;
+			name = "Open In Code";
 			children = (
-				69C8AA70106E8F5800C4DE0D /* Finder.app */,
+				A70000000000000000000012 /* Config.xcconfig */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				A7000000000000000000000B /* Terminal */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = "Open In Code";
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
+			name = "Other Sources";
 			children = (
-				32CA4F630368D1EE00C91783 /* Open in Code_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				44ED65A827996BBF00AFF241 /* Finder.h */,
 			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				441F481927998B11008F9980 /* Monterey.icns */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A7000000000000000000000B /* Terminal */ = {
-			isa = PBXGroup;
-			children = (
-				A70000000000000000000005 /* main.m */,
-				A70000000000000000000006 /* Info.plist */,
-				A70000000000000000000007 /* Terminal.icns */,
-				A70000000000000000000008 /* Terminal.svg */,
-			);
-			path = Terminal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Open in Code */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open in Code" */;
-			buildPhases = (
-				8D1107290486CEB800E47090 /* Resources */,
-				8D11072C0486CEB800E47090 /* Sources */,
-				8D11072E0486CEB800E47090 /* Frameworks */,
-				694495D00B869BB500A19631 /* CopyFiles */,
-			);
-			buildRules = (
-				69C8AA6F106E8F0C00C4DE0D /* PBXBuildRule */,
-			);
-			dependencies = (
-			);
-			name = "Open in Code";
-			productInstallPath = "$(HOME)/Applications";
-			productName = "Open in Code";
-			productReference = 8D1107320486CEB800E47090 /* Open in Code.app */;
-			productType = "com.apple.product-type.application";
-		};
 		A7000000000000000000000C /* Open in Terminal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A70000000000000000000011 /* Build configuration list for PBXNativeTarget "Open in Terminal" */;
+			productReference = A70000000000000000000009 /* Open in Terminal.app */;
+			productType = "com.apple.product-type.application";
+			productName = "Open in Terminal";
 			buildPhases = (
 				A7000000000000000000000D /* Sources */,
 				A7000000000000000000000A /* Frameworks */,
 				A7000000000000000000000E /* Resources */,
 			);
-			buildRules = ();
 			dependencies = ();
 			name = "Open in Terminal";
-			productName = "Open in Terminal";
-			productReference = A70000000000000000000009 /* Open in Terminal.app */;
+			buildRules = ();
+		};
+		8D1107260486CEB800E47090 /* Open in Code */ = {
+			isa = PBXNativeTarget;
+			buildRules = ();
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open in Code" */;
+			productReference = 8D1107320486CEB800E47090 /* Open in Code.app */;
 			productType = "com.apple.product-type.application";
+			productName = "Open in Code";
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			dependencies = ();
+			name = "Open in Code";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 1320;
-				TargetAttributes = {
-					8D1107260486CEB800E47090 = {
-						DevelopmentTeam = VURRGRYW45;
-					};
-				};
-			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Open in VSCode" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
-			hasScannedForEncodings = 1;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* Open In Code */;
 			projectDirPath = "";
 			projectRoot = "";
+			knownRegions = (
+				en,
+			);
+			compatibilityVersion = "Xcode 3.2";
 			targets = (
 				8D1107260486CEB800E47090 /* Open in Code */,
 				A7000000000000000000000C /* Open in Terminal */,
 			);
+			developmentRegion = en;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Open In Code */;
 		};
 /* End PBXProject section */
 
@@ -245,8 +177,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				69C8AA71106E8F5800C4DE0D /* Finder.app in Resources */,
 				441F481A27998B11008F9980 /* Monterey.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,12 +184,22 @@
 		A7000000000000000000000E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (A70000000000000000000002 /* Terminal.icns in Resources */,);
+			files = (
+				A70000000000000000000002 /* Terminal.icns in Resources */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A7000000000000000000000D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70000000000000000000001 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,202 +208,92 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7000000000000000000000D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (A70000000000000000000001 /* Terminal/main.m in Sources */,);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				44ED65A62799659F00AFF241 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		C01FCF4B08A954540054247B /* Debug */ = {
+		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				"COPY_PHASE_STRIP[sdk=*]" = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /unsigned;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sertacozercan.openincode;
-				PRODUCT_NAME = "Open in Code";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
+			baseConfigurationReference = A70000000000000000000012 /* Config.xcconfig */;
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_VERSION = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /unsigned;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sertacozercan.openincode;
 				PRODUCT_NAME = "Open in Code";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sertacozercan.openincode;
+				APP_ICON_FILE = Monterey.icns;
 			};
 			name = Release;
-		};
-		C01FCF4F08A954540054247B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		C01FCF5008A954540054247B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "";
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		A7000000000000000000000F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
-				INFOPLIST_FILE = Terminal/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
-				PRODUCT_NAME = "Open in Terminal";
-			};
-			name = Debug;
 		};
 		A70000000000000000000010 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
-				INFOPLIST_FILE = Terminal/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
 				PRODUCT_NAME = "Open in Terminal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
+				APP_ICON_FILE = Terminal.icns;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) OPEN_IN_TERMINAL=1";
 			};
 			name = Release;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = s;
+			};
+			name = Release;
+			baseConfigurationReference = A70000000000000000000012 /* Config.xcconfig */;
+		};
+		A7000000000000000000000F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Open in Terminal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
+				APP_ICON_FILE = Terminal.icns;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) OPEN_IN_TERMINAL=1";
+			};
+			name = Debug;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Open in Code";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sertacozercan.openincode;
+				APP_ICON_FILE = Monterey.icns;
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open in Code" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C01FCF4B08A954540054247B /* Debug */,
-				C01FCF4C08A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Open in VSCode" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug */,
-				C01FCF5008A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A70000000000000000000011 /* Build configuration list for PBXNativeTarget "Open in Terminal" */ = {
 			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 			buildConfigurations = (
 				A7000000000000000000000F /* Debug */,
 				A70000000000000000000010 /* Release */,
 			);
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open in Code" */ = {
+			isa = XCConfigurationList;
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Open in VSCode" */ = {
+			isa = XCConfigurationList;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
 		};
 /* End XCConfigurationList section */
 	};

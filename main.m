@@ -1,64 +1,73 @@
-//
-//  main.m
-//  Open in Code
-//
-//  Created by Sertac Ozercan on 7/9/2016.
-//  Copyright Sertac Ozercan 2016. All rights reserved.
-//
+// Based on Open in Code by Sertac Ozercan, copyright 2016. See LICENSE.
 
 #if !defined(__arm64__)
-#error "Open in Code requires Apple Silicon (arm64). Intel builds are not supported."
+#error "These applications require Apple Silicon (arm64). Intel builds are not supported."
 #endif
 
 #import <Cocoa/Cocoa.h>
 #import "Finder.h"
 
-NSString* getPathToFrontFinderWindow(){
-	
-	FinderApplication* finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.Finder"];
-    
-	FinderItem *target = [(NSArray*)[[finder selection]get] firstObject];
-    if (target == nil){
-        target = [[[[finder FinderWindows] firstObject] target] get];
+static NSString *FinderDirectory(void) {
+    @try {
+        FinderApplication *finder = [SBApplication applicationWithBundleIdentifier:@"com.apple.finder"];
+        FinderItem *item = [(NSArray *)[[finder selection] get] firstObject];
+        if (item == nil) {
+            item = [[[[finder FinderWindows] firstObject] target] get];
+        }
+
+        NSString *urlString = item.URL;
+        NSURL *url = urlString.length > 0 ? [NSURL URLWithString:urlString] : nil;
+        if (url.isFileURL) {
+            NSNumber *isAlias = nil;
+            [url getResourceValue:&isAlias forKey:NSURLIsAliasFileKey error:NULL];
+            if (isAlias.boolValue) {
+                NSURL *resolved = [NSURL URLByResolvingAliasFileAtURL:url
+                                                            options:NSURLBookmarkResolutionWithoutUI
+                                                              error:NULL];
+                if (resolved != nil) {
+                    url = resolved;
+                }
+            }
+
+            NSString *path = url.path;
+            BOOL isDirectory = NO;
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
+                return isDirectory ? path : path.stringByDeletingLastPathComponent;
+            }
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Could not read the Finder folder: %@", exception.reason);
     }
-	
-	NSURL* url =[NSURL URLWithString:target.URL];
-	NSError* error;
-	NSData* bookmark = [NSURL bookmarkDataWithContentsOfURL:url error:nil];
-    NSURL* fullUrl = [NSURL URLByResolvingBookmarkData:bookmark
-                                        options:NSURLBookmarkResolutionWithoutUI
-                                  relativeToURL:nil
-                            bookmarkDataIsStale:nil
-                                          error:&error];
-    if(fullUrl != nil){
-        url = fullUrl;
-    }
 
-	NSString* path = [[url path] stringByExpandingTildeInPath];
-
-    BOOL isDir = NO;
-    [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
-
-	if(!isDir){
-		path = [path stringByDeletingLastPathComponent];
-	}
-
-	return path;
+    return NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES).firstObject ?: NSHomeDirectory();
 }
 
-int main(int argc, char *argv[])
-{
-	id pool = [[NSAutoreleasePool alloc] init];
-	
-	NSString* path;
-	@try{
-		path = getPathToFrontFinderWindow();
-	}@catch(id ex){
-		path =[@"~/Desktop" stringByExpandingTildeInPath];
-	}
-    
-    [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-n", @"-b" ,@"com.microsoft.VSCode", @"--args", path]] waitUntilExit];
-  	
-	[pool release];
-    return 0;
+int main(void) {
+    @autoreleasepool {
+        NSString *path = FinderDirectory();
+        NSTask *task = [[NSTask alloc] init];
+        task.executableURL = [NSURL fileURLWithPath:@"/usr/bin/open"];
+        // Pass the directory as one argument, never as shell source.
+#if OPEN_IN_TERMINAL
+        task.arguments = @[@"-b", @"com.apple.Terminal", @"--", path];
+#else
+        task.arguments = @[@"-n", @"-b", @"com.microsoft.VSCode", @"--args", path];
+#endif
+
+        NSError *error = nil;
+        if ([task launchAndReturnError:&error]) {
+            [task waitUntilExit];
+            if (task.terminationStatus == 0) {
+                return 0;
+            }
+        }
+
+        [NSApplication sharedApplication];
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = [NSString stringWithFormat:@"%@ failed",
+                             [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleName"]];
+        alert.informativeText = error.localizedDescription ?: @"The destination application could not open the selected folder.";
+        [alert runModal];
+        return 1;
+    }
 }
