@@ -6,6 +6,10 @@
 //  Copyright Sertac Ozercan 2016. All rights reserved.
 //
 
+#if !defined(__arm64__)
+#error "Open in Code requires Apple Silicon (arm64). Intel builds are not supported."
+#endif
+
 #import <Cocoa/Cocoa.h>
 #import "Finder.h"
 
