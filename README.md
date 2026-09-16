@@ -2,6 +2,8 @@
 
 # Mac OpenIn
 
+**English** · [简体中文](README.zh-CN.md)
+
 ### Open Finder folders in Code or Terminal.
 
 **macOS 27 tested · Apple Silicon only · Two apps in one DMG**
@@ -45,9 +47,17 @@ captured on macOS 27.0, build `26A428`.
 
 > **Dragging an app into the toolbar on macOS 27**
 >
-> If Command-drag does not work, right-click the toolbar and choose **Text Only**.
-> Drag the apps into place, then switch back to **Icon Only**. This workaround was
-> verified on the macOS 27 setup shown above.
+> On macOS 27, you may need to **right-click the Finder toolbar and choose Text Only
+> first**, then **hold Command (⌘) while dragging each app into the toolbar**.
+> Keep Command held during the drag, even in Text Only mode. After adding both apps,
+> you can switch back to **Icon Only**. This workaround was verified on the macOS 27
+> setup shown above.
+
+<p align="center">
+  <img src="docs/images/macos-27-text-only.png" width="580" alt="Finder toolbar context menu with the Text Only option; all file and folder information has been removed">
+  <br>
+  <em>Toolbar menu illustration based on the supplied screenshot. All file and folder information has been removed.</em>
+</p>
 
 ## Install
 
@@ -55,7 +65,9 @@ captured on macOS 27.0, build `26A428`.
 2. Open the DMG. **Both `.app` files are inside the same disk image.**
 3. Copy the apps into `/Applications/Utilities` using Finder.
 4. Open each app once and allow access to Finder when macOS asks.
-5. Command-drag the apps into the Finder toolbar: **Terminal on the left, Code on the right**.
+5. On macOS 27, you may need to right-click the Finder toolbar and select **Text Only** first.
+6. **Hold Command (⌘)** and drag each app into the Finder toolbar: **Terminal on the left, Code on the right**.
+7. Once both apps are added, right-click the toolbar and switch back to **Icon Only** if desired.
 
 Each app also has an individual ZIP download on the release page. Use Archive Utility
 or `ditto` to extract ZIPs so the transparent icon metadata is preserved.
