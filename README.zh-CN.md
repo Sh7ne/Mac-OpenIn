@@ -54,9 +54,9 @@ Shell 特殊字符的路径，路径会作为文件名传递。无需安装 `cod
 > 这一方法已在上图的 macOS 27 环境中验证。
 
 <p align="center">
-  <img src="docs/images/macos-27-text-only.png" width="580" alt="Finder 工具栏右键菜单中的 Text Only 选项；已去除所有文件和文件夹信息">
+  <img src="docs/images/macos-27-text-only.png" width="580" alt="Finder 工具栏右键菜单中的 Text Only（只显示文字）选项">
   <br>
-  <em>根据提供的截图制作的菜单示意图，已去除所有文件和文件夹信息。</em>
+  <em>在 Finder 工具栏右键菜单中选择 Text Only（只显示文字），再按住 Command（⌘）将 App 拖入工具栏。</em>
 </p>
 
 ## 安装

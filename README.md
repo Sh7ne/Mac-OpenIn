@@ -54,9 +54,9 @@ captured on macOS 27.0, build `26A428`.
 > setup shown above.
 
 <p align="center">
-  <img src="docs/images/macos-27-text-only.png" width="580" alt="Finder toolbar context menu with the Text Only option; all file and folder information has been removed">
+  <img src="docs/images/macos-27-text-only.png" width="580" alt="Finder toolbar context menu with the Text Only display option">
   <br>
-  <em>Toolbar menu illustration based on the supplied screenshot. All file and folder information has been removed.</em>
+  <em>Choose Text Only from the Finder toolbar’s context menu, then hold Command (⌘) while dragging an app into the toolbar.</em>
 </p>
 
 ## Install
