@@ -13,6 +13,10 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C82F4C8C1D31B01E0084C3F5 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
+		A70000000000000000000001 /* Terminal/main.m in Sources */ = {isa = PBXBuildFile; fileRef = A70000000000000000000005 /* main.m */; };
+		A70000000000000000000002 /* Terminal.icns in Resources */ = {isa = PBXBuildFile; fileRef = A70000000000000000000007 /* Terminal.icns */; };
+		A70000000000000000000003 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A70000000000000000000004 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C8A98D106E818900C4DE0D /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -57,6 +61,11 @@
 		69C8AA70106E8F5800C4DE0D /* Finder.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Finder.app; path = /System/Library/CoreServices/Finder.app; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Open in Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open in Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70000000000000000000005 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A70000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A70000000000000000000007 /* Terminal.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Terminal.icns; sourceTree = "<group>"; };
+		A70000000000000000000008 /* Terminal.svg */ = {isa = PBXFileReference; lastKnownFileType = image.svg; path = Terminal.svg; sourceTree = "<group>"; };
+		A70000000000000000000009 /* Open in Terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open in Terminal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +75,15 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C82F4C8C1D31B01E0084C3F5 /* ScriptingBridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7000000000000000000000A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70000000000000000000003 /* Cocoa.framework in Frameworks */,
+				A70000000000000000000004 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Open in Code.app */,
+				A70000000000000000000009 /* Open in Terminal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +123,7 @@
 			children = (
 				69C8AA70106E8F5800C4DE0D /* Finder.app */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				A7000000000000000000000B /* Terminal */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -140,6 +160,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A7000000000000000000000B /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				A70000000000000000000005 /* main.m */,
+				A70000000000000000000006 /* Info.plist */,
+				A70000000000000000000007 /* Terminal.icns */,
+				A70000000000000000000008 /* Terminal.svg */,
+			);
+			path = Terminal;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,6 +192,21 @@
 			productInstallPath = "$(HOME)/Applications";
 			productName = "Open in Code";
 			productReference = 8D1107320486CEB800E47090 /* Open in Code.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A7000000000000000000000C /* Open in Terminal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A70000000000000000000011 /* Build configuration list for PBXNativeTarget "Open in Terminal" */;
+			buildPhases = (
+				A7000000000000000000000D /* Sources */,
+				A7000000000000000000000A /* Frameworks */,
+				A7000000000000000000000E /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = "Open in Terminal";
+			productName = "Open in Terminal";
+			productReference = A70000000000000000000009 /* Open in Terminal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -189,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Open in Code */,
+				A7000000000000000000000C /* Open in Terminal */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +251,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7000000000000000000000E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A70000000000000000000002 /* Terminal.icns in Resources */,);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -213,6 +266,12 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7000000000000000000000D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (A70000000000000000000001 /* Terminal/main.m in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
@@ -354,6 +413,28 @@
 			};
 			name = Release;
 		};
+		A7000000000000000000000F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				INFOPLIST_FILE = Terminal/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
+				PRODUCT_NAME = "Open in Terminal";
+			};
+			name = Debug;
+		};
+		A70000000000000000000010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "-";
+				INFOPLIST_FILE = Terminal/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sh7ne.openinterminal;
+				PRODUCT_NAME = "Open in Terminal";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -371,6 +452,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A70000000000000000000011 /* Build configuration list for PBXNativeTarget "Open in Terminal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7000000000000000000000F /* Debug */,
+				A70000000000000000000010 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
